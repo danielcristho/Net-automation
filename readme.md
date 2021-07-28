@@ -1,6 +1,6 @@
 ### My repository about learning network automation with Docker, Python & GNS3
 
-### Using Framework and integrate using:
+### Using Framework and integrate with:
 * Paramiko
 * Netmiko
 * Telnetlib
