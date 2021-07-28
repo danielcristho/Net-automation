@@ -8,6 +8,7 @@ passwd = getpass.getpass() or "cisco"
 ssh_client = paramiko.SSHClient() 
 ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) 
 
+#NESTED LIST
 list_ip = [
         "10.10.10.1",
         "10.10.10.2",
@@ -32,7 +33,6 @@ for ip in list_ip:
     #config di shell cisco
     conn.send("configure terminal\n")
 
-    #NESTED LIST
     for x in range(6, 9): #buat looping utk banyak interface sesuai range
         conn.send(f"interface lo{x}\n")
         conn.send(f"ip address 11.{x+1}.1.{router_split} 255.255.255.255\n") #IP Addr=interface + 1
