@@ -1,4 +1,4 @@
-### My repository about learning network automation with Docker, Python & GNS3 from Aguna Course
+### My repository about learning network automation with Docker, Python & GNS3
 
 ### Using Framework and integrate using:
 * Paramiko
