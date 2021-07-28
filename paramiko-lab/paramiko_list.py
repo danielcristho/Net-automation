@@ -31,7 +31,7 @@ for ip in list_ip:
     
     #config di shell cisco
     conn.send("configure terminal\n")
-    
+
     #NESTED LIST
     for x in range(6, 9): #buat looping utk banyak interface sesuai range
         conn.send(f"interface lo{x}\n")
@@ -40,7 +40,7 @@ for ip in list_ip:
 
     conn.send("do write\n") # save configuration
     time.sleep(2)
-    conn.send("do show ip int br | ex unas\n")
+    conn.send("do show ip int br | ex unas\n") #do show ip interface brief | exclude unassigned
     time.sleep(1)
 
     output = conn.recv(65535).decode() 
