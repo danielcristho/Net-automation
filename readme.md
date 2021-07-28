@@ -5,5 +5,6 @@
 * Netmiko
 * Telnetlib
 * CSV
+* SFTP
 
 ![Current Result Net-automation](https://github.com/danielcristho/Net-automation/blob/main/lab1.png)
