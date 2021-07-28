@@ -31,7 +31,8 @@ for ip in list_ip:
     
     #config di shell cisco
     conn.send("configure terminal\n")
-    #NESTED LOOPING
+    
+    #NESTED LIST
     for x in range(6, 9): #buat looping utk banyak interface sesuai range
         conn.send(f"interface lo{x}\n")
         conn.send(f"ip address 11.{x+1}.1.{router_split} 255.255.255.255\n") #IP Addr=interface + 1
