@@ -1,6 +1,7 @@
 from datetime import  datetime
 import paramiko 
 import time
+import csv
 
 ssh_client = paramiko.SSHClient() 
 ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) 
@@ -9,32 +10,29 @@ file_log = open("error_log.txt", "a")
 
 #read CSV  file
 data_router = open("list.csv", "r")
-list_router = data_router.readlines()#baca file .csv dalam bentuk list
-list_router.remove(list_router[0])# remove index pertama
-
+list_router = csv.DictReader(data_router, delimiter=",") #read using dictionary
 
 
 for device in list_router: 
-    device = device.split(",")
     try:
         ssh_client.connect(
-            hostname=device[0], # index IP 
-            username=device[1], # index username
-            password=device[2], # password
-            port = device[3] if  device[3] else 22 
+            hostname=device['ip'], # index IP 
+            username=device['username'], # index username
+            password=device['password'], # password
+            port = device['port'] if  device['port'] else 22 
         )
         print("**********************************************")
-        print(f"Success login to {device[0]}")
+        print(f"Success login to {device['ip']}")
         conn = ssh_client.invoke_shell()
 
-        if device[4].strip(): #hapus spasi/enter
+        if device['enable']:
             conn.send("enable\n")
-            conn.send(f"{device[4]}\n") # send secret 
-            time.sleep(1)
+            conn.send(f"{device['enable']}\n") # send secret 
+            time.sleep(2)
 
             
-        conn.send("show ip int br | ex unas\n") #do show ip interface brief | exclude unassigned
-        time.sleep(1)
+        conn.send("show running-config | include username\n") #do show ip interface brief | exclude unassigned
+        time.sleep(3)
 
         output = conn.recv(65535).decode() 
         print(output)
@@ -42,20 +40,20 @@ for device in list_router:
         ssh_client.close()  
 
     except paramiko.ssh_exception.AuthenticationException as message:
-        print(f"{message} [{device[0]}] ")
+        print(f"{message} [{device['ip']}] ")
         file_log.write(
-            f"{message} [{device[0]}] {datetime.now() }\n"
+            f"{message} [{device['ip']}] {datetime.now()}\n"
         )
 
     except paramiko.ssh_exception.NoValidConnectionsError as message:
         print(f"{message}") 
-        file_log.write(f"{message} {datetime.now() }\n")
+        file_log.write(f"{message} {datetime.now()}\n")
 
     #buat default error exception!!!
     except Exception as message:
-        print(f"error: {message} [{device[0]}]")
+        print(f"error: {message} [{device['ip']}]")
         file_log.write(
-            f"error, message: {message}{datetime.now() }\n" 
+            f"error, message: {message}{datetime.now()}\n" 
         )
 
 file_log.close() 
