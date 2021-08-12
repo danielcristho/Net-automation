@@ -30,12 +30,15 @@ for device in list_router:
             conn.send(f"{device['enable']}\n") # send secret 
             time.sleep(2)
 
-            
-        conn.send("show running-config | include username\n") #do show ip interface brief | exclude unassigned
-        time.sleep(3)
+
+        conn.send("terminal length 0\n") # hapus more di shell pada saat show run
+        conn.send("show running-config\n") #do show ip interface brief | exclude unassigned
+        time.sleep(5)
 
         output = conn.recv(65535).decode() 
-        print(output)
+        file_backup = open (f"backup_config/{device['ip']}.cfg", "w") #save backup file to folder backup_config/
+        file_backup.write(output)
+        file_backup.close()
 
         ssh_client.close()  
 
