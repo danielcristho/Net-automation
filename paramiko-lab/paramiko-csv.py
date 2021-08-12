@@ -5,15 +5,17 @@ import time
 ssh_client = paramiko.SSHClient() 
 ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) 
 
+file_log = open("error_log.txt", "a")
+
 #read CSV  file
 data_router = open("list.csv", "r")
 list_router = data_router.readlines()#baca file .csv dalam bentuk list
 list_router.remove(list_router[0])# remove index pertama
 
-file_log = open("error_log.txt", "a")
+
 
 for device in list_router: 
-    device = device.split(";")
+    device = device.split(",")
     try:
         ssh_client.connect(
             hostname=device[0], # index IP 
