@@ -22,7 +22,7 @@
    crypto key generate rsa
    1024 {enter this}
    
-   username cisco password cisco {can be different}
+   username admin password admin123 {can be different}
    secret cisco
    
    line vty 0 15
