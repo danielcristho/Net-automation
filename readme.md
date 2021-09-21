@@ -8,5 +8,31 @@
 * SFTP
 
   * Netmiko, Support devices type [ssh_dispatcher.py](https://github.com/ktbyers/netmiko/blob/master/netmiko/ssh_dispatcher.py)
+### Cisco basic command:
 
-  ![Current Result Net-automation](https://github.com/danielcristho/Net-automation/blob/main/lab1.png)
+## Configure IP Address & SHH
+   
+   ```
+   configure terminal
+   interface fastethernet0/0 {can be different}
+   ip address 192.168.0.1 255.255.255.0 
+   no shutdown
+   
+   ip domain name rtr.local
+   crypto key generate rsa
+   1024 {enter this}
+   
+   username cisco password cisco {can be different}
+   secret cisco
+   
+   line vty 0 15
+   login local
+   
+   do write {save configuration}
+   
+   ```
+   
+   
+
+
+ 
