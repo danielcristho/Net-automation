@@ -15,7 +15,7 @@
    ```
    configure terminal
    interface fastethernet0/0 {can be different}
-   ip address 192.168.0.1 255.255.255.0 
+   ip address 10.10.10.1 255.255.255.0 
    no shutdown
    
    ip domain name rtr.local
@@ -29,8 +29,9 @@
    login local
    
    do write {save configuration}
-   
+     
    ```
+   ![](https://github.com/danielcristho/Net-automation/blob/main/lab1.png)
    
    
 
