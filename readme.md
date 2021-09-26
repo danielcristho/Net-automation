@@ -10,7 +10,7 @@
   * Netmiko, Support devices type [ssh_dispatcher.py](https://github.com/ktbyers/netmiko/blob/master/netmiko/ssh_dispatcher.py)
 ### Cisco basic command:
 
- #### Configure IP Address & SHH
+ #### Configure IP Address & SSH
    
    ```
    configure terminal
