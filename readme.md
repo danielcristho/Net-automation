@@ -35,7 +35,7 @@
    ```
    python3 -m venv netenv {create environment}
    source netenv/bin/activate
-   pip3 install paramiko netmiko
+   pip3 install -r requirements.txt
    ```
    
    ![](https://github.com/danielcristho/Net-automation/blob/main/lab1.png)
