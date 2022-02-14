@@ -23,9 +23,10 @@
    1024 {enter this}
    
    username admin password admin123 {can be different}
-   secret cisco
+   enable secret cisco
    
    line vty 0 15
+   transport all
    login local
    
    do write {save configuration}
